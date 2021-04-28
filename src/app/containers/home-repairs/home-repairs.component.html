@@ -1,0 +1,9 @@
+<header>
+  <h2>Home Repairs</h2>
+</header>
+<section>
+  <app-home-repair-entry (itemAdded)="itemAdded($event)"></app-home-repair-entry>
+</section>
+<section>
+  <app-home-repair-list [list]="stuffToDo$ | async"></app-home-repair-list>
+</section>

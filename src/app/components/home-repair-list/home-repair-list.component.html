@@ -1,0 +1,14 @@
+<h3>Stuff to do</h3>
+<div class="card"
+     *ngFor="let item of list">
+  <div class="card-body">
+    <h5 class="card-title">{{ item.item }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ item.project || 'No Project Assigned' }}</h6>
+    <p class="card-text">This is a assigned to {{ item.assignedTo }}</p>
+
+
+
+    <button *ngIf="!item.completed"
+            class="card-link">Mark Complete</button>
+  </div>
+</div>
