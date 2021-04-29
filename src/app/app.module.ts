@@ -8,10 +8,14 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeRepairsComponent } from './containers/home-repairs/home-repairs.component';
 import { HomeRepairEntryComponent } from './components/home-repair-entry/home-repair-entry.component';
 import { HomeRepairListComponent } from './components/home-repair-list/home-repair-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NG_VALIDATORS, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeRepairEffects } from './effects/home-repair.effects';
+import { ItemExistsValidator } from './validators/itemexists.validator';
 
 @NgModule({
   declarations: [
@@ -27,9 +31,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([HomeRepairEffects]),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // { provide: NG_VALIDATORS, useExisting: ItemExistsValidator, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

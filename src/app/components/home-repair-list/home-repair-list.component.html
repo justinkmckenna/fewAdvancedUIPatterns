@@ -7,8 +7,9 @@
     <p class="card-text">This is a assigned to {{ item.assignedTo }}</p>
 
 
-
-    <button *ngIf="!item.completed"
+    <span *ngIf="item.id.startsWith('t')"
+          class="alert alert-info">Pending</span>
+    <button *ngIf="!item.completed && !item.id.startsWith('t')"
             class="card-link">Mark Complete</button>
   </div>
 </div>

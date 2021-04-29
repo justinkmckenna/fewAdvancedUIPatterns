@@ -43,6 +43,10 @@
       {{getErrorMessage(completed)}}
     </div>
   </div>
+  <div *ngIf="form.errors?.henryDoesDishesRealBad"
+       class="alert alert-danger">
+    Henry can't do dishes.
+  </div>
   <button type="submit"
           class="btn btn-success">Add</button>
 </form>

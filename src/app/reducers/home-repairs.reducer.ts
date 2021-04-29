@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { HomeRepairModel } from "../models";
+import * as actions from '../actions/home-repair.actions';
 
 export interface HomeRepairState extends EntityState<HomeRepairModel> {
 
@@ -17,7 +18,12 @@ const initialState: HomeRepairState = {
 }
 
 const myReducer = createReducer(
-  initialState
+  initialState,
+  on(actions.itemAdded, (s, a) => adapter.addOne(a.payload, s)),
+  on(actions.newItemRequestSuccess, (s, a) => adapter.updateOne({
+    id: a.oldId,
+    changes: { id: `${a.item.id}` }
+  }, s))
 )
 
 export function reducer(state: HomeRepairState, action: Action): HomeRepairState {

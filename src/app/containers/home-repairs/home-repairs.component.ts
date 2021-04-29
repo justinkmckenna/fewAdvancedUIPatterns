@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { itemAdded } from 'src/app/actions/home-repair.actions';
 import { HomeRepairModel } from 'src/app/models';
 import { AppState, selectAllHomeRepairs } from 'src/app/reducers';
 
@@ -20,8 +21,7 @@ export class HomeRepairsComponent implements OnInit {
   }
 
   itemAdded(item: HomeRepairModel) {
-    item = { id: this.id++, ...item }
-    // this.stuffToDo = [item, ...this.stuffToDo];
+    this.store.dispatch(itemAdded(item));
   }
 }
 function selectHomeRepairs(selectHomeRepairs: any): Observable<HomeRepairModel[]> {
